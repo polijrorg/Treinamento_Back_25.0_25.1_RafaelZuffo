@@ -2,8 +2,8 @@
   "name": "piupiuwer-backend",
   "version": "1.0.0",
   "main": "dist/server.js",
-  "repository": "COLOCAR SEU LINK DE REPOSITORIO AQUI",
-  "author": "SEU NOME AQUI <SEU EMAIL AQUI>",
+  "repository": "https://github.com/polijrorg/Treinamento_Back_25.0_25.1_RafaelZuffo",
+  "author": "Rafael dos Santos Zuffo <rafael.zuffo@polijunior.com.br>",
   "license": "MIT",
   "scripts": {
     "dev:server": "ts-node-dev --respawn --transpile-only src/server.ts",
@@ -24,6 +24,7 @@
     "@types/morgan": "^1.9.4",
     "@types/node": "^22.15.3",
     "@types/uuid": "^9.0.2",
+    "@types/uuidv4": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
     "eslint": "8.57.0",
