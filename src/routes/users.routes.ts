@@ -3,7 +3,8 @@ import { uuid } from 'uuidv4';
 import CreateUserService from '../services/CreateUserService';
 import usersRepository from '../repositories/UsersRepository';
 import GetUserService from '../services/GetUserService';
-import UpdateUserService from '../services/UpdateUserService'
+import UpdateUserService from '../services/UpdateUserService';
+import DeleteUserService from '../services/DeleteUserService';
 
 const usersRouter = Router();
 export const userRespository = new usersRepository();
@@ -70,6 +71,18 @@ usersRouter.put('/:id', (request: Request, response: Response) => {
   });
 
   return response.json(updated_user);
+})
+
+usersRouter.delete('/:id', (request: Request, response: Response) => {
+  const { id } = request.params;
+
+  const DeleteUser = new DeleteUserService(userRespository);
+
+  const deleted_user = DeleteUser.execute({
+    id
+  });
+
+  return response.json(deleted_user);
 })
 
 

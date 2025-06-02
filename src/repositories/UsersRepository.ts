@@ -53,6 +53,16 @@ class usersRepository{
 
     return (this.users[index] = { ...this.users[index], ...data.data, updated_at: new Date});
   }
+
+  public findIndexById(id: String): number {
+    const index = this.users.findIndex((user: Users) => user.id == id);
+
+    return index;
+  }
+
+  public delete(index: number){
+    this.users.splice(index, 1);
+  }
 }
 
 export default usersRepository;
