@@ -8,6 +8,12 @@ interface ICreateUserDTO{
   email: string;
   cpf: string;
 }
+interface IUpdateUserDTO{
+  id: string;
+  name: string;
+  email: string;
+}
+
 
 class usersRepository{
   private users: Users[];
@@ -32,6 +38,20 @@ class usersRepository{
     this.users.push(user);
 
     return user;
+  }
+
+  public getAll(): Users[] {
+    return this.users;
+  }
+
+  public getById(id: String): Users | undefined {
+    return this.users.find((users: Users) => users.id == id);
+  }
+
+  public update(data: IUpdateUserDTO): Users {
+    const index = this.users.findIndex((user: Users) => user.id == data.id);
+
+    return (this.users[index] = { ...this.users[index], ...data.data, updated_at: new Date});
   }
 }
 

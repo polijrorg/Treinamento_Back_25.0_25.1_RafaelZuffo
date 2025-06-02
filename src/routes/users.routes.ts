@@ -2,6 +2,8 @@ import { Router, Request, Response } from 'express';
 import { uuid } from 'uuidv4';
 import CreateUserService from '../services/CreateUserService';
 import usersRepository from '../repositories/UsersRepository';
+import GetUserService from '../services/GetUserService';
+import UpdateUserService from '../services/UpdateUserService'
 
 const usersRouter = Router();
 export const userRespository = new usersRepository();
@@ -35,5 +37,40 @@ usersRouter.get('/getAll', (request: Request, response: Response) => {
 
   return response.json(users)
 })
+
+usersRouter.get('/:id', (request: Request, response: Response) => {
+  const { id } = request.params;
+
+  const GetUser = new GetUserService(userRespository);
+
+  const user = GetUser.execute({
+    id
+  });
+
+  return response.json(user);
+})
+
+usersRouter.put('/:id', (request: Request, response: Response) => {
+  const { id } = request.params;
+  const {name, email } = request.body;
+
+  if( !name || !email ){
+    return response.status(400).json({error: 'Por favor, envie todas as informações'});
+  }
+
+
+  const UpdateUser = new UpdateUserService(userRespository);
+
+  const updated_user = UpdateUser.execute({
+    id,
+    data:{
+      name,
+      email,
+    }
+  });
+
+  return response.json(updated_user);
+})
+
 
 export default usersRouter;
